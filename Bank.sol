@@ -18,11 +18,11 @@ function Deposit () public payable {
     accounts[msg.sender] += msg.value;
 }
 
-/*this line will allow the user to withdraw his/her money. It also prevent Re-Entrancy attacks 
-by implenting OpenZepplin extension */
+//this line will allow the user to withdraw his/her money. It also prevent Re-Entrancy attacks 
+//by implenting OpenZepplin extension  
 function withdraw(uint amount)public payable nonReentrant {
-    require (accounts[msg.sender] >= msg.value, "You do not have enough money in your account");
-    accounts[msg.sender] -= msg.value;
+    require (accounts[msg.sender] >= amount, "You do not have enough money in your account");
+    accounts[msg.sender] -= amount;
     //this line allows the user to withdraw their money 
     payable(msg.sender).transfer(amount);
 
@@ -39,6 +39,12 @@ function Getbalance() public view returns (uint){
 //this line will show the balance of the msg.sender's account 
 function GetUserBalance() public view returns (uint){
     return accounts[msg.sender];
+
+
+
+}
+
+
 
 
 
